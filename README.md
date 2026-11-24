@@ -35,11 +35,12 @@ Exige Node 24 ou superior.
 
 ```bash
 # a partir de um clone deste repositório
+git clone https://github.com/nicholas-nogueira/swarm-agents.git
+cd swarm-agents
 node bin/swarm-agents.mjs install
-
-# ou, quando o pacote estiver publicado/empacotado
-npx swarm-agents install
 ```
+
+> **Atenção:** este pacote ainda **não está publicado no npm**. O nome `swarm-agents` no npm pertence a outro projeto, então **não rode `npx swarm-agents`**: isso executaria código de terceiros. Use o clone acima.
 
 Sem flags e num terminal interativo, o instalador mostra um multiselect das ferramentas e pergunta o escopo:
 
@@ -124,4 +125,4 @@ Todo teste usa HOME e diretório de trabalho temporários; nada é instalado no 
 
 ## Licença
 
-Ainda não definida: nenhum arquivo `LICENSE` foi criado porque a licença não foi escolhida. Até lá, todos os direitos ficam reservados ao autor.
+MIT. Veja o arquivo [`LICENSE`](LICENSE).

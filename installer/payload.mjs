@@ -28,7 +28,12 @@ export async function loadPayload(dir) {
         throw new InstallerError(`O payload contém um link simbólico (${childRel}); por segurança nada será instalado.`, { code: 'PAYLOAD_LINK' });
       }
       if (e.isDirectory()) await walk(childAbs, childRel);
-      else if (e.isFile()) payload.set(childRel, await readFile(childAbs));
+      else if (e.isFile()) {
+        // O npm não publica .gitignore: o pacote leva "dot-gitignore", devolvido aqui como ".gitignore".
+        const alvo = e.name === 'dot-gitignore' ? (rel ? `${rel}/.gitignore` : '.gitignore') : childRel;
+        if (alvo !== childRel && entries.some((x) => x.name === '.gitignore')) continue; // clone do Git: vale o original
+        payload.set(alvo, await readFile(childAbs));
+      }
     }
   };
   await walk(dir, '');

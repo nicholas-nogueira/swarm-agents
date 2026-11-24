@@ -5,3 +5,4 @@ coverage/
 *.swarm-agents.bak
 .env
 .env.*
+payload/skills/swarm/dot-gitignore

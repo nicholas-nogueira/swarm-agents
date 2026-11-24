@@ -67,3 +67,30 @@ test('loadPayload ignora diretórios vazios', async (t) => {
   const payload = await loadPayload(tmp.dir);
   assert.deepEqual([...payload.keys()], ['a.txt']);
 });
+
+// O npm não publica arquivos .gitignore; o pacote leva a cópia "dot-gitignore", que o loader devolve como ".gitignore".
+test('loadPayload devolve dot-gitignore como .gitignore quando só ele existe (pacote npm)', async (t) => {
+  const tmp = await makeTmp();
+  t.after(tmp.cleanup);
+  await writeTree(tmp.dir, { 'skills/swarm/SKILL.md': 's', 'skills/swarm/dot-gitignore': 'tmp/\n' });
+  const payload = await loadPayload(tmp.dir);
+  assert.deepEqual([...payload.keys()].sort(), ['skills/swarm/.gitignore', 'skills/swarm/SKILL.md']);
+  assert.equal(payload.get('skills/swarm/.gitignore').toString(), 'tmp/\n');
+});
+
+test('loadPayload prefere o .gitignore real e ignora a cópia dot-gitignore (clone do Git)', async (t) => {
+  const tmp = await makeTmp();
+  t.after(tmp.cleanup);
+  await writeTree(tmp.dir, { 'skills/swarm/.gitignore': 'real\n', 'skills/swarm/dot-gitignore': 'copia\n' });
+  const payload = await loadPayload(tmp.dir);
+  assert.deepEqual([...payload.keys()], ['skills/swarm/.gitignore']);
+  assert.equal(payload.get('skills/swarm/.gitignore').toString(), 'real\n');
+});
+
+test('loadPayload só trata o nome exato dot-gitignore (outros arquivos seguem como estão)', async (t) => {
+  const tmp = await makeTmp();
+  t.after(tmp.cleanup);
+  await writeTree(tmp.dir, { 'a/dot-gitignore.bak': 'x', 'a/meu-dot-gitignore': 'y' });
+  const payload = await loadPayload(tmp.dir);
+  assert.deepEqual([...payload.keys()].sort(), ['a/dot-gitignore.bak', 'a/meu-dot-gitignore']);
+});

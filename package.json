@@ -1,14 +1,51 @@
 {
-  "name": "swarm-agents",
+  "name": "@nicholas-nogueira/swarm-agents",
   "version": "0.1.0",
-  "private": true,
   "description": "Skill /swarm (vários agentes em paralelo, coordenados por um board) e instalador para Claude Code, Codex, Cursor, opencode, Gemini CLI e Antigravity.",
+  "license": "MIT",
   "type": "module",
-  "engines": { "node": ">=24" },
-  "bin": { "swarm-agents": "bin/swarm-agents.mjs" },
-  "files": ["bin", "installer", "adapters", "payload", "README.md", "docs"],
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "swarm-agents": "bin/swarm-agents.mjs"
+  },
+  "files": [
+    "bin",
+    "installer",
+    "adapters",
+    "payload",
+    "README.md",
+    "docs",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicholas-nogueira/swarm-agents.git"
+  },
+  "homepage": "https://github.com/nicholas-nogueira/swarm-agents#readme",
+  "bugs": {
+    "url": "https://github.com/nicholas-nogueira/swarm-agents/issues"
+  },
+  "keywords": [
+    "swarm",
+    "agents",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "gemini-cli",
+    "antigravity",
+    "skills",
+    "installer"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "node --test \"tests/**/*.test.mjs\"",
-    "test:coverage": "node --test --experimental-test-coverage --test-coverage-lines=90 --test-coverage-branches=80 --test-coverage-functions=90 \"--test-coverage-include=installer/**\" \"--test-coverage-include=adapters/**\" \"--test-coverage-include=bin/**\" \"--test-coverage-include=payload/**\" \"tests/**/*.test.mjs\""
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-lines=90 --test-coverage-branches=80 --test-coverage-functions=90 \"--test-coverage-include=installer/**\" \"--test-coverage-include=adapters/**\" \"--test-coverage-include=bin/**\" \"--test-coverage-include=payload/**\" \"tests/**/*.test.mjs\"",
+    "prepack": "node scripts/pack-gitignore.mjs prepack",
+    "postpack": "node scripts/pack-gitignore.mjs postpack"
   }
 }
