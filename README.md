@@ -34,13 +34,18 @@ O Antigravity já tem um `/swarm` nativo (plugin embutido `swarm`). Instalar o n
 Exige Node 24 ou superior.
 
 ```bash
-# a partir de um clone deste repositório
+# direto do npm (nada fica instalado globalmente)
+npx @nicholas-nogueira/swarm-agents install
+
+# ou a partir de um clone deste repositório
 git clone https://github.com/nicholas-nogueira/swarm-agents.git
 cd swarm-agents
 node bin/swarm-agents.mjs install
 ```
 
-> **Atenção:** este pacote ainda **não está publicado no npm**. O nome `swarm-agents` no npm pertence a outro projeto, então **não rode `npx swarm-agents`**: isso executaria código de terceiros. Use o clone acima.
+> **Atenção ao nome:** o pacote é `@nicholas-nogueira/swarm-agents` (com o escopo). O nome sem escopo, `swarm-agents`, pertence a **outro projeto** no npm: **não rode `npx swarm-agents`**, isso executaria código de terceiros.
+
+Os outros comandos funcionam do mesmo jeito, por exemplo `npx @nicholas-nogueira/swarm-agents list`, `... install --dry-run` e `... uninstall`.
 
 Sem flags e num terminal interativo, o instalador mostra um multiselect das ferramentas e pergunta o escopo:
 
