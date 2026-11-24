@@ -1,0 +1,3 @@
+# O payload e a linha de base precisam ficar byte-idênticos: sem conversão de fim de linha.
+payload/** -text
+tests/golden/** -text

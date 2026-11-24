@@ -1,0 +1,14 @@
+{
+  "name": "swarm-agents",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Skill /swarm (vários agentes em paralelo, coordenados por um board) e instalador para Claude Code, Codex, Cursor, opencode, Gemini CLI e Antigravity.",
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "bin": { "swarm-agents": "bin/swarm-agents.mjs" },
+  "files": ["bin", "installer", "adapters", "payload", "README.md", "docs"],
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "test:coverage": "node --test --experimental-test-coverage --test-coverage-lines=90 --test-coverage-branches=80 --test-coverage-functions=90 \"--test-coverage-include=installer/**\" \"--test-coverage-include=adapters/**\" \"--test-coverage-include=bin/**\" \"--test-coverage-include=payload/**\" \"tests/**/*.test.mjs\""
+  }
+}

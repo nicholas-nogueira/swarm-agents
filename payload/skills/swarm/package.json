@@ -1,0 +1,11 @@
+{
+  "name": "claude-swarm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Board e CLI do /swarm para Claude Code (inspirado no /swarm do Google Antigravity).",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=90 --test-coverage-branches=80 --test-coverage-functions=90 --test-coverage-exclude=tests/** \"tests/**/*.test.mjs\""
+  }
+}

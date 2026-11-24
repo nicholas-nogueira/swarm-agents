@@ -1,0 +1,24 @@
+{
+  "_fonte": "Preços (US$ por 1M de tokens) e recomendações da documentação oficial da Anthropic (skill claude-api, cache de 2026-11-03). Confira https://platform.claude.com/docs/en/about-claude/pricing antes de confiar no custo: o valor real é o do seu plano.",
+  "_regras": "cache_write_5m = 1,25x a entrada; cache_write_1h = 2x; cache_read varia por modelo. fast_multiplier: preço do modo rápido sobre entrada e saída (null = modelo sem modo rápido).",
+  "aliases": {
+    "fable": "claude-fable-5-2",
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5"
+  },
+  "prices": {
+    "claude-fable-5-2": { "input": 8, "output": 40, "cache_write_5m": 10, "cache_write_1h": 16, "cache_read": 0.2, "fast_multiplier": 2 },
+    "claude-opus-5-5": { "input": 4, "output": 20, "cache_write_5m": 5, "cache_write_1h": 8, "cache_read": 0.2, "fast_multiplier": 2 },
+    "claude-sonnet-5-5": { "input": 2, "output": 10, "cache_write_5m": 2.5, "cache_write_1h": 4, "cache_read": 0.1, "fast_multiplier": null },
+    "claude-haiku-5-5": { "input": 0.1, "output": 0.5, "cache_write_5m": 0.125, "cache_write_1h": 0.2, "cache_read": 0.01, "fast_multiplier": null, "_obs": "preço até 100K tokens de prompt; acima disso US$ 0,50 / 2,50" }
+  },
+  "efforts": ["low", "medium", "high", "xhigh", "max"],
+  "tiers": {
+    "fronteira": { "model": "fable", "effort": "high", "uso": "o problema mais difícil, quando o Opus em effort alto ainda não basta (Fable 5.2 começa em high)" },
+    "complexo": { "model": "opus", "effort": "high", "uso": "raciocínio difícil: arquitetura, bug complexo, refatoração ampla, decisão com trade-off" },
+    "implementacao": { "model": "sonnet", "effort": "medium", "uso": "código e testes bem especificados, tarefa agêntica do dia a dia (Sonnet 5.5 começa em medium)" },
+    "verificacao": { "model": "sonnet", "effort": "medium", "uso": "verifier: ler o diff, rodar testes, procurar casos de borda" },
+    "mecanico": { "model": "haiku", "effort": "low", "uso": "busca, leitura, extração, formatação, docs simples (effort low para subagentes e tarefas simples)" }
+  }
+}
